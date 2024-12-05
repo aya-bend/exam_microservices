@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="customer@mysql-3ea8dc8a-bendaoude-7f0e.l.aivencloud.com" uuid="03efe56a-218d-48a6-ab55-f1d16be6b5be">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://mysql-3ea8dc8a-bendaoude-7f0e.l.aivencloud.com:23123/customer</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="inventory@pg-27dc4554-bendaoude-7f0e.h.aivencloud.com" uuid="53fb53d1-aea4-4754-b206-cfe6afb8b051">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://pg-27dc4554-bendaoude-7f0e.h.aivencloud.com:23123/inventory</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>

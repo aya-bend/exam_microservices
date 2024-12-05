@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: service-product # Remplacez "service-product" par le nom du service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ # URL du serveur Eureka
+  instance:
+    prefer-ip-address: true # Utilise l'adresse IP pour l'enregistrement
+server:
+  port: 8081 # Assurez-vous que chaque service utilise un port unique
