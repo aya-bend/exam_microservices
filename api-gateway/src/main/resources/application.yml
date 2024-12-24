@@ -5,26 +5,22 @@ spring:
     name: api-gateway
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
       routes:
+
         - id: service-product
-          uri: http://localhost:8081 # Adresse de product-service
+          uri: lb://product_service #http://localhost:8081 # Adresse de product-service
           predicates:
             - Path=/products/** # Toutes les requêtes vers /products/** redirigées
 
         - id: service_order
-          uri: http://localhost:8082 # Adresse de order-service
+          uri: lb://service_order #http://localhost:8082 # Adresse de order-service
           predicates:
             - Path=/orders/** # Toutes les requêtes vers /orders/** redirigées
-
-        - id: service-inventory
-          uri: http://localhost:8083 # Adresse de inventory-service
-          predicates:
-            - Path=/inventories/** # Toutes les requêtes vers /inventory/** redirigées
-
-        - id: service-customer
-          uri: http://localhost:8084 # Adresse de customer-service
-          predicates:
-            - Path=/customers/** # Toutes les requêtes vers /customers/** redirigées
 
 
 logging:

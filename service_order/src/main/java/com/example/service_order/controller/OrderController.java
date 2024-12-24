@@ -2,41 +2,41 @@ package com.example.service_order.controller;
 
 import com.example.service_order.model.Order;
 import com.example.service_order.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/orders")
+@Controller
 public class OrderController {
 
-    private final OrderService orderService;
+    @Autowired
+    private OrderService orderService;
 
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
-    }
-
-    // Obtenir toutes les commandes
-    @GetMapping
-    public List<Order> getAllOrders() {
+    @QueryMapping
+    public List<Order> orders() {
         return orderService.getAllOrders();
     }
 
-    // Obtenir une commande par ID
-    @GetMapping("/{id}")
-    public Order getOrderById(@PathVariable Long id) {
+    @QueryMapping
+    public Order orderById(Long id) {
         return orderService.getOrderById(id);
     }
 
-    // Créer une nouvelle commande
-    @PostMapping
-    public Order createOrder(@RequestBody Order order) {
+    @MutationMapping
+    public Order createOrder(String productId, int quantity, Long customerId, double totalPrice) {
+        Order order = new Order();
+        order.setProductId(productId);
+        order.setQuantity(quantity);
+        order.setCustomerId(customerId);
+        order.setTotalPrice(totalPrice);
         return orderService.createOrder(order);
     }
 
-    // Supprimer une commande par ID
-    @DeleteMapping("/{id}")
-    public void deleteOrder(@PathVariable Long id) {
+    @MutationMapping
+    public boolean deleteOrder(Long id) {
         orderService.deleteOrder(id);
+        return true;
     }
 }

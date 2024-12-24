@@ -2,36 +2,44 @@ package com.example.serviceproduct.controller;
 
 import com.example.serviceproduct.model.Product;
 import com.example.serviceproduct.service.ProductService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/products")
+@Controller
 public class ProductController {
-    private final ProductService productService;
 
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
+    @Autowired
+    private ProductService productService;
 
-    @GetMapping
-    public List<Product> getAllProducts() {
+    // Requête pour récupérer tous les produits
+    @QueryMapping
+    public List<Product> products() {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/{id}")
-    public Product getProductById(@PathVariable String id) {
+    // Requête pour récupérer un produit par ID
+    @QueryMapping
+    public Product productById(String id) {
         return productService.getProductById(id);
     }
 
-    @PostMapping
-    public Product createProduct(@RequestBody Product product) {
+    // Mutation pour ajouter un produit
+    @MutationMapping
+    public Product addProduct(String name, String description, double price, int stock) {
+        Product product = new Product();
+        product.setName(name);
+        product.setDescription(description);
+        product.setPrice(price);
+        product.setStock(stock);
         return productService.saveProduct(product);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable String id) {
+    // Mutation pour supprimer un produit
+    @MutationMapping
+    public boolean deleteProduct(String id) {
         productService.deleteProduct(id);
+        return true;
     }
 }

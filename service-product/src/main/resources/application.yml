@@ -8,4 +8,5 @@ eureka:
   instance:
     prefer-ip-address: true # Utilise l'adresse IP pour l'enregistrement
 server:
-  port: 8081 # Assurez-vous que chaque service utilise un port unique
+  #port: 8081 # Assurez-vous que chaque service utilise un port unique
+  port: ${PORT:8081}
